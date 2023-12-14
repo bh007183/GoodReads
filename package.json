@@ -1,0 +1,28 @@
+{
+  "name": "GoodReads",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test":"node tests/example.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bh007183/GoodReads.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bh007183/GoodReads/issues"
+  },
+  "homepage": "https://github.com/bh007183/GoodReads#readme",
+  "dependencies": {
+    "playwright": "^1.40.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.10.4"
+  }
+}
