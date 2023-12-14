@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test":"node tests/example.spec.ts"
+    "test": "node tests/example.spec.ts"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "playwright": "^1.40.1"
   },
   "devDependencies": {
+    "@playwright/browser-chromium": "^1.40.1",
     "@playwright/test": "^1.40.1",
     "@types/node": "^20.10.4"
   }

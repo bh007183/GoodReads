@@ -1,18 +1,25 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test("start", async ({ page }) => {
+  await page.goto('https://www.goodreads.com/author/quotes/17212.Marcus_Aurelius');
 
   // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+  let quotes = await page.locator(".quoteText");
+
+  let el = await page.$$eval('.quoteText', nodes => nodes.map(n => {
+    return n
+  }));
+  console.log(quotes)
+  page.on('console', async (msg) => {
+    const msgArgs = msg.args();
+    const logValues = await Promise.all(msgArgs.map(async arg => await arg.jsonValue()));
+    console.log(...logValues);
+});
+
+
 
   // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+ 
 });
