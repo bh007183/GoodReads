@@ -19,7 +19,20 @@
   },
   "homepage": "https://github.com/bh007183/GoodReads#readme",
   "dependencies": {
-    "playwright": "^1.40.1"
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "api": "^6.1.1",
+    "axios": "^1.6.2",
+    "child_process": "^1.0.2",
+    "dotenv": "^16.3.1",
+    "ffmpeg": "0.0.4",
+    "ffprobe": "^1.1.2",
+    "fluent-ffmpeg": "^2.1.2",
+    "get-audio-duration": "^4.0.1",
+    "install": "^0.13.0",
+    "mp3-duration": "^1.1.0",
+    "npm": "^10.2.5",
+    "playwright": "^1.40.1",
+    "videoshow": "^0.1.12"
   },
   "devDependencies": {
     "@playwright/browser-chromium": "^1.40.1",
