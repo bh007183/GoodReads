@@ -1,7 +1,7 @@
 const assert = require("node:assert");
 const { chromium, devices } = require("playwright");
 const fs = require("fs");
- let {Scraper} = require("./Scraper");
+ let {Scraper} = require("./Class/Scraper");
 
 (async () => {
   // Setup
