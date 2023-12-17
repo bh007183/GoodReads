@@ -5,6 +5,7 @@ class Scraper{
         this.page = page
         this.loads = 0
         this.allQuotes = []
+        this.combinedText = ''
     }
 
     //Takes a int to determin how many times it clicks on the load more button
@@ -19,6 +20,7 @@ class Scraper{
         } else {
           await this.iPhoneScrapeData();
           fs.appendFileSync("./test.json", JSON.stringify(this.allQuotes));
+          fs.appendFileSync("./currentQuotes.txt.", this.allQuotes);
         }
       }
 
@@ -66,6 +68,8 @@ class Scraper{
         likes,
       };
       this.allQuotes.push(obj);
+
+      this.combinedText += obj.quote.replace(/,/g, ",,,,,,,").replace(/./, ".......") + "<break time='2s' />"
     }
   }
 }
