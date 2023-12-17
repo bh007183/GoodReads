@@ -11,7 +11,8 @@ class Scraper{
     //Takes a int to determin how many times it clicks on the load more button
     //on mobile version.
     async iPhoneLoadMore(numberOfLoads) {
-        if ((await this.page.locator(".jsLoadMore").isVisible()) && this.loads < numberOfLoads) {
+      
+        if ((await this.page.locator(".jsLoadMore").isVisible()) && this.loads <= numberOfLoads) {
           this.loads++;
           await this.page.locator(".jsLoadMore").click();
           await this.page.waitForTimeout(10000);
@@ -20,7 +21,7 @@ class Scraper{
         } else {
           await this.iPhoneScrapeData();
           fs.appendFileSync("./test.json", JSON.stringify(this.allQuotes));
-          fs.appendFileSync("./currentQuotes.txt.", this.allQuotes);
+          fs.appendFileSync("./currentQuotes.txt", this.combinedText);
         }
       }
 
@@ -69,9 +70,14 @@ class Scraper{
       };
       this.allQuotes.push(obj);
 
-      this.combinedText += obj.quote.replace(/,/g, ",,,,,,,").replace(/./, ".......") + "<break time='2s' />"
+      let replace1 = obj.quote.replace(/,/g, ",,,,,")
+      let replace2 = replace1.replace(/\./g, ".....")
+      console.log(replace2)
+      this.combinedText += replace2 + '<break time="4s"/>'
+   
     }
   }
+ 
 }
 
-module.exports = {Scraper}
+module.exports = Scraper
