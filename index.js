@@ -2,7 +2,6 @@ const assert = require("node:assert");
 const { chromium, devices, firefox, webkit } = require("playwright");
 const fs = require("fs");
  let Scraper = require("./Class/Scraper");
-
 (async () => {
   // Setup
   const browser = await webkit.launch({ headless: false, slowMo: 50 });
@@ -27,6 +26,6 @@ console.log("this")
   
 
 })();
-console.log("this is BIIIGOIGOGIGOJDSIGHJOSIDJOISJDOJIGSJ")
+
 
 
