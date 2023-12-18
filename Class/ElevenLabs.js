@@ -1,22 +1,21 @@
 require("dotenv").config();
+const fs = require("fs");
 class ElevenLabs {
 
-    constructor(author) {
-      this.author = author;
-      this.file = new File(fs.readFileSync("./currentQuotes.txt"), "currentQuotes.txt")
+    constructor() {
+      
+      
     }
-  
-    
 
-  createProject() {
+  async createProject(author) {
       const form = new FormData();
-      form.append("author", this.author);
+      form.append("author", author);
       form.append("default_model_id", "eleven_multilingual_v2");
       form.append("default_paragraph_voice_id", "MBtA80mrlErJ8xjUHgHV");
       form.append("default_title_voice_id", "MBtA80mrlErJ8xjUHgHV");
-      form.append("from_document", file);
+      form.append("from_document", new File(fs.readFileSync("./currentQuotes.txt"), "currentQuotes.txt"));
       form.append("from_url", "null");
-      form.append("name", this.author);
+      form.append("name", author);
     
       const options = {
         method: "POST",

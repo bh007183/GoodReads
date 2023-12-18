@@ -20,7 +20,7 @@ class YouTube{
 async runSample() {
   // Obtain user credentials to use for the request
   const auth = await authenticate({
-    keyfilePath: path.join(__dirname, './client_secret_841672384400-ios0vf9k8dd8pnuva7j3e4ud9p6lbvgp.apps.googleusercontent.com.json'),
+    keyfilePath: path.join(__dirname, './youtube_secret.json'),
     scopes: [
       'https://www.googleapis.com/auth/youtube.upload',
       'https://www.googleapis.com/auth/youtube',
