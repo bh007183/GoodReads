@@ -73,7 +73,7 @@ class Scraper{
       let replace1 = obj.quote.replace(/,/g, ",,,,,")
       let replace2 = replace1.replace(/\./g, ".....")
       console.log(replace2)
-      this.combinedText += replace2 + '<break time="4s"/>'
+      this.combinedText += replace2 + '<break time="5s"/>'
    
     }
   }

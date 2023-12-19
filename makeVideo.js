@@ -6,26 +6,26 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 const { getAudioDurationInSeconds } = require("get-audio-duration");
 
 const audioFile =
-  "./Media/audio/ElevenLabs_2023-12-15T04_43_01_Aaryan - majestic and deep_gen_s50_sb75_se0_b_m2.mp3";
+  "./Media/ElevenLabs_2023-12-18T14_58_05_Chapter 1.mp3";
 var videoshow = require("videoshow");
 
-const song = "Media/audio/relaxing-145038.mp3"
+const song = "./Media/marcus-aurelius-8062803_1280.jpg"
 // (async() => {
 
 // })()
 
 var images = [
   {
-    path: "./Media/Screen Shot 2022-04-09 at 3.16.23 PM.png",
-    caption: "Hello world as video subtitle",
-    loop: 12,
+    path: "./Media/marcus-aurelius-8062803_1280.jpg",
+    // caption: "Hello world as video subtitle",
+    // loop: 12,
   },
-  {
-    path: "./Media/Screen Shot 2022-04-09 at 3.16.23 PM.png",
-    caption:
-      "Until we have begun to go without them, we fail to realize how unnecessary many things are. We've been using them not because we needed them but because we had them.",
-    loop: 5,
-  },
+  // {
+  //   path: "./Media/Screen Shot 2022-04-09 at 3.16.23 PM.png",
+  //   caption:
+  //     "Until we have begun to go without them, we fail to realize how unnecessary many things are. We've been using them not because we needed them but because we had them.",
+  //   loop: 5,
+  // },
 ];
 
 async function getFileLength() {
@@ -38,7 +38,7 @@ console.log(getFileLength());
 
 var videoOptions = {
   fps: 25,
-  //   loop: 40, // seconds
+    loop: 1050, // seconds
   transition: true,
   transitionDuration: 1, // seconds
   videoBitrate: 1024,
