@@ -24,9 +24,7 @@ const { chromium, devices, firefox, webkit } = require("playwright");
   // await browser.close();
 
 console.log("this")
-  let {createProject} = new ElevenLabs()
-  console.log("Posting to ElevenLabs" + author)
-  await createProject(author)
+
   
 
 })();

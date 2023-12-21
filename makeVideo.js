@@ -5,11 +5,10 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 // Paths to your input files
 const { getAudioDurationInSeconds } = require("get-audio-duration");
 
-const audioFile =
-  "./Media/ElevenLabs_2023-12-18T14_58_05_Chapter 1.mp3";
+const audioFile = "./Media/ElevenLabs_2023-12-19T21_49_35_Chapter 1.mp3";
 var videoshow = require("videoshow");
 
-const song = "./Media/marcus-aurelius-8062803_1280.jpg"
+const song = "./Media/ElevenLabs_2023-12-19T05_39_10_Chapter 1.mp3";
 // (async() => {
 
 // })()
@@ -38,7 +37,7 @@ console.log(getFileLength());
 
 var videoOptions = {
   fps: 25,
-    loop: 1050, // seconds
+  loop: 980, // seconds
   transition: true,
   transitionDuration: 1, // seconds
   videoBitrate: 1024,
