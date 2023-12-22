@@ -8,22 +8,60 @@ var videoshow = require("videoshow");
 const { getAudioDurationInSeconds } = require("get-audio-duration");
 
 class MakeVideo {
+  constructor(images) {
+    this.images = images;
+    this.audioFile = "./Media/Audio/Concatinated/all.mp3";
+  }
 
-    constructor(images){
+  async generateVideo() {
+   
+    let seconds = await getAudioDurationInSeconds(
+      fs.readFileSync("./Media/Audio/Concatinated/all.mp3")
+    ).then((duration) => {
+      return Math.ceil(duration);
+    });
 
-        this.images = images
-        this.audioFile = "./Media/Audio/Concatinated/all.mp3"
+    var videoOptions = {
+      fps: 25,
+      loop: seconds, // seconds
+      transition: true,
+      transitionDuration: 1, // seconds
+      videoBitrate: 1024,
+      videoCodec: "libx264",
+      size: "640x?",
+      audioBitrate: "128k",
+      audioChannels: 2,
+      format: "mp4",
+      pixelFormat: "yuv420p",
+    };
+    console.log(seconds)
+    videoshow(images, videoOptions)
+      .audio("./Media/Audio/Concatinated/all.mp3")
+      .save("./Media/Video/video.mp4")
+      .on("start", function (command) {
+        console.log("ffmpeg process started:");
+      })
+      .on("error", function (err, stdout, stderr) {
+        console.error("Error:");
+        console.error("ffmpeg stderr:");
+      })
+      .on("end", function (output) {
+        console.error("Video created in:");
+      });
+  }
 
-    }
-  async concatAudio() {
+  concatAudio() {
     var songs = fs.readdirSync("./Media/Audio/tim-able-slow-and-deliberatew");
 
     let filePath = songs.map(
       (v, i) => "./Media/Audio/tim-able-slow-and-deliberatew/" + v
     );
 
+    let generateVideo = this.generateVideo;
+    let audioFile = "./Media/Audio/Concatinated/all.mp3";
+    console.log(filePath);
     audioconcat(filePath)
-      .concat(this.audioFile)
+      .concat(audioFile)
       .on("start", function (command) {
         console.log("ffmpeg process started:", command);
       })
@@ -33,44 +71,9 @@ class MakeVideo {
       })
       .on("end", function (output) {
         console.error("Audio created in:", output);
+        generateVideo();
       });
-  }
-
-  async generateVideo(){
-    let seconds = await getAudioDurationInSeconds(this.audioFile).then((duration) => {
-        return Math.ceil(duration);
-      });
-
-
-      var videoOptions = {
-        fps: 25,
-        loop: seconds, // seconds
-        transition: true,
-        transitionDuration: 1, // seconds
-        videoBitrate: 1024,
-        videoCodec: "libx264",
-        size: "640x?",
-        audioBitrate: "128k",
-        audioChannels: 2,
-        format: "mp4",
-        pixelFormat: "yuv420p",
-      };
-      
-      videoshow(images, videoOptions)
-        .audio(this.audioFile)
-        .save("./Media/Video/video.mp4")
-        .on("start", function (command) {
-          console.log("ffmpeg process started:", command);
-        })
-        .on("error", function (err, stdout, stderr) {
-          console.error("Error:", err);
-          console.error("ffmpeg stderr:", stderr);
-        })
-        .on("end", function (output) {
-          console.error("Video created in:", output);
-        });
-      
   }
 }
 
-module.exports = MakeVideo
+module.exports = MakeVideo;

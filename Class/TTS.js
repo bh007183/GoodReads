@@ -4,6 +4,7 @@ const fs = require("fs");
 const { finished, Readable } = require("node:stream");
 var extract = require("extract-zip");
 var unzipper = require("unzipper");
+var MakeVideo = require("./MakeVideo.js")
 
 class TTS {
   constructor(quoteData, voiceId) {
@@ -47,6 +48,7 @@ class TTS {
         this.historyIds = ids;
       })
       .catch((err) => console.error(err));
+      console.log("1")
   }
 
   async downloadHistory() {
@@ -77,6 +79,7 @@ class TTS {
           if (err) {
             console.log("Stream failed.", err);
           } else {
+            console.log("2")
             console.log("Stream succeeded.");
 
             extract(
@@ -86,6 +89,7 @@ class TTS {
                 // handle err
               }
             );
+
           }
         });
       })

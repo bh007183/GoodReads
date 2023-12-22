@@ -6,11 +6,18 @@ const MakeVideo = require("./Class/MakeVideo.js")
 
 async function test(){
   let tts = new TTS()
+  
 await tts.getHistoryIds()
+
 await tts.downloadHistory()
-let mv = new MakeVideo("./Media/Image/marcus-aurelius-8062803_1280.jpg")
-await mv.concatAudio()
-await mv.generateVideo()
+
+fs.watchFile("./Media/Audio/tim-able-slow-and-deliberatew", () => {
+  console.log("files loaded")
+  let mv = new MakeVideo("./Media/Image/marcus-aurelius-8062803_1280.jpg")
+            mv.concatAudio()
+          
+})
+
 }
 test()
 
