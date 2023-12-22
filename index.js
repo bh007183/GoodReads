@@ -1,5 +1,6 @@
 
 (async () => {
+  const TTS = require("./Class/TTS.js")
   const assert = require("node:assert");
 const { chromium, devices, firefox, webkit } = require("playwright");
  let Scraper = require("./Class/Scraper");
@@ -18,7 +19,17 @@ const { chromium, devices, firefox, webkit } = require("playwright");
 
  let scraper = new Scraper(page)
 
-  await scraper.iPhoneLoadMore(1)
+  await scraper.iPhoneLoadMore(2)
+
+  let tts = new TTS(scraper.getQuotes(),"qVV58SH4CtxEz8JNNx3M")
+
+  await tts.textToSpeachGenerator()
+
+  await setTimeout(() => {}, 900000);
+
+  await tts.getHistoryIds()
+
+  await tts.downloadHistory()
 
   // await context.close();
   // await browser.close();

@@ -2,35 +2,36 @@ const axios = require("axios");
 require("dotenv").config();
 const fs = require("fs");
 const { finished, Readable } = require("node:stream");
-var extract = require('extract-zip')
+var extract = require("extract-zip");
 var unzipper = require("unzipper");
 
 class TTS {
-  constructor(quote, voiceId) {
-    this.quote = quote;
+  constructor(quoteData, voiceId) {
+    this.quoteData = quoteData;
     this.voiceId = voiceId;
     this.historyIds = [];
   }
 
-  textToSpeachGenerator() {
-    console.log(`${process.env.ELLEVEN}`);
-    const options = {
-      method: "POST",
-      headers: {
-        "xi-api-key": process.env.ELLEVEN,
-        "Content-Type": "application/json",
-      },
-      body: '{"text":"' + this.quote + '"}',
-    };
-    console.log(this.voiceId);
+  async textToSpeachGenerator() {
+    for (let v of this.quoteData) {
+      setTimeout(() => {}, 3000);
+      const options = {
+        method: "POST",
+        headers: {
+          "xi-api-key": process.env.ELLEVEN,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: v.quote }),
+      };
 
-    fetch(
-      "https://api.elevenlabs.io/v1/text-to-speech/" + this.voiceId,
-      options
-    )
-      .then((res) => res.json())
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+      await fetch(
+        "https://api.elevenlabs.io/v1/text-to-speech/" + this.voiceId,
+        options
+      )
+        .then((res) => res.json())
+        .then((res) => console.log(res))
+        .catch((err) => console.error(err));
+    }
   }
 
   async getHistoryIds() {
@@ -49,18 +50,16 @@ class TTS {
   }
 
   async downloadHistory() {
-    console.log(
-      JSON.stringify({
-        history_item_ids: this.historyIds,
-      })
-    );
+    
     const options = {
       method: "POST",
       headers: {
         "xi-api-key": process.env.ELLEVEN,
         "Content-Type": "application/json",
       },
-      body: '{"history_item_ids":["7QB4Md9tXX0ANsQu0YpY","kwphODS1zGhpZk3jGret"]}',
+      body: JSON.stringify({
+        history_item_ids: this.historyIds,
+      }),
     };
 
     await fetch("https://api.elevenlabs.io/v1/history/download", options)
@@ -80,10 +79,13 @@ class TTS {
           } else {
             console.log("Stream succeeded.");
 
-            extract("./Media/Audio/files.zip", { dir: "/Users/benhopkins/Javascript/GoodReads/Media/Audio" }, function (err) {
+            extract(
+              "./Media/Audio/files.zip",
+              { dir: "/Users/benhopkins/Javascript/GoodReads/Media/Audio" },
+              function (err) {
                 // handle err
-             })
-            
+              }
+            );
           }
         });
       })
