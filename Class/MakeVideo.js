@@ -16,7 +16,7 @@ class MakeVideo {
   async generateVideo() {
    
     let seconds = await getAudioDurationInSeconds(
-      fs.readFileSync("./Media/Audio/Concatinated/all.mp3")
+      "./Media/Audio/Concatinated/all.mp3"
     ).then((duration) => {
       return Math.ceil(duration);
     });
@@ -35,18 +35,18 @@ class MakeVideo {
       pixelFormat: "yuv420p",
     };
     console.log(seconds)
-    videoshow(images, videoOptions)
+    videoshow([this.images], videoOptions)
       .audio("./Media/Audio/Concatinated/all.mp3")
       .save("./Media/Video/video.mp4")
       .on("start", function (command) {
         console.log("ffmpeg process started:");
       })
       .on("error", function (err, stdout, stderr) {
-        console.error("Error:");
-        console.error("ffmpeg stderr:");
+        console.log("Error:");
+        console.log("ffmpeg stderr:");
       })
       .on("end", function (output) {
-        console.error("Video created in:");
+        console.log("Video created in:");
       });
   }
 
@@ -57,21 +57,22 @@ class MakeVideo {
       (v, i) => "./Media/Audio/tim-able-slow-and-deliberatew/" + v
     );
 
-    let generateVideo = this.generateVideo;
+    
     let audioFile = "./Media/Audio/Concatinated/all.mp3";
     console.log(filePath);
     audioconcat(filePath)
       .concat(audioFile)
       .on("start", function (command) {
-        console.log("ffmpeg process started:", command);
+        console.log("ffmpeg process started:");
       })
       .on("error", function (err, stdout, stderr) {
-        console.error("Error:", err);
-        console.error("ffmpeg stderr:", stderr);
+        console.error("Error:");
+        console.error("ffmpeg stderr:");
       })
       .on("end", function (output) {
-        console.error("Audio created in:", output);
-        generateVideo();
+        console.error("Audio created in:");
+       
+        
       });
   }
 }
