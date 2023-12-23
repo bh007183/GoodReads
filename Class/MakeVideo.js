@@ -4,7 +4,7 @@ const ffmpeg = require("fluent-ffmpeg");
 const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
 ffmpeg.setFfmpegPath(ffmpegPath);
 var videoshow = require("videoshow");
-// Paths to your input files
+
 const { getAudioDurationInSeconds } = require("get-audio-duration");
 
 class MakeVideo {
