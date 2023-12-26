@@ -70,7 +70,7 @@ class Scraper{
 
       obj.quote = obj.quote.replace(/\,/g, ",,,,,")
       obj.quote = obj.quote.replace(/\./g, ".....")
-      obj.quote = obj.quote + '<break time="5s"/>'
+      
     }
   }
   getQuotes(){
